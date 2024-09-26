@@ -84,6 +84,12 @@ class Consumer extends Thread {
         int item;
         int totalItem = 0; // 누적 소비 개수
 
+        try {
+            Thread.sleep(10);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
         while (!Thread.currentThread().isInterrupted()) {
             synchronized(q) {
                 while (q.peek() == null) { // 큐가 비어있으면 대기

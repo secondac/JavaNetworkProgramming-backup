@@ -3,7 +3,7 @@ package thread.velog;
 public class Thread_Implements_Main {
     public static void main(String[] args) {
 
-        Thread thread = new Thread(new Thread_Implements());
+            Thread thread = new Thread(new Thread_Implements());
         thread.start();
 
         System.out.println("thread id = " + thread.threadId());
