@@ -74,7 +74,7 @@ public class Book implements Serializable {
                 ", Title = " + getTitle() +
                 ", Edition = " + getEdition() +
                 ", Author = " + getAuthor() +
-                ", Year =" + getYear() +
+                ", Year = " + getYear() +
                 ", Price = " + getPrice();
     }
 
