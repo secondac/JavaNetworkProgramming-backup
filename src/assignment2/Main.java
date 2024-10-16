@@ -37,6 +37,7 @@ public class Main extends JFrame {
 
 
     /**
+     * @삭제/수정/추가-확인 : Test 클래스 실행
      *
      *
      * @sendToFile :  파일로 데이터 보냄
@@ -57,9 +58,17 @@ public class Main extends JFrame {
         Book book1 = new Book(9780321714114L, "C++ Primer", 5, "Stanley B. Lippman", 2012, 41.82 );
         Book book2 = new Book(9781449357672L, "Java Network Programming",4, "Elliotte Rusty Harold", 2013, 26.49 );
         Book book3 = new Book(9780321334879L, "Effective C++",3, "Scott Meyers", 2005, 43.73 );
-        Book book4 = new Book(9789390727506L,"database system concepts",7," Henry Korth, Abraham Silberschatz", 2021, 53.63);
+        Book book4 = new Book(9789390727506L,"Database system concepts",7," Henry Korth, Abraham Silberschatz", 2021, 53.63);
+        Book book5 = new Book(9780672337475L, "OpenGL Superbible", 7, "Graham Sellers, Richard Wright Jr., Nicholas Haemel",2015, 43.49);
+        Book book6 = new Book(9781617294945L, "Spring in Action", 6, "Craig Walls", 2018, 44.99 );
+        Book book7 = new Book(9781617291470L, "Netty in Action", 1, "Norman Maurer, Marvin Allen Wolfthal", 2016, 37.99 );
+        Book book8 = new Book(9780134997834L, "A Tour of C++", 3, "Bjarne Stroustrup", 2018, 35.99 );
+        Book book9 = new Book(9780534950972L, "Introduction to the Theory of Computation", 3, "Michael Sipser", 2012, 90.00);
+        Book book10 = new Book(9781617298254L, "Troubleshooting Java", 1, "Lauren Malhoit, Andy Syrewicze", 2023, 42.99);
+        Book book11 = new Book(9780262033848L, "Introduction to Algorithms", 3, "Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein", 2009, 99.95);
+        Book book12 = new Book(9781119695401L, "Professional C++", 5, "Marc Gregoire", 2021, 60.00);
 
-        Book[] books = {book1, book2, book3, book4};
+        Book[] books = {book1, book2, book3, book4, book5, book6, book7, book8, book9, book10, book11, book12};
 
         for (Book book : books) {
             list.add(book);
@@ -69,7 +78,7 @@ public class Main extends JFrame {
         receiveFromFile();
 
         initTableModel();
-        setTitle("테이블 실습");
+        setTitle("Book Data");
         setLayout(new BorderLayout());
         Container con = getContentPane();
         con.add(searchPanel, BorderLayout.NORTH);
@@ -78,6 +87,7 @@ public class Main extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocation(256,256);
         pack();
+        setSize(768,512);
         setVisible(true);
 
     }
@@ -134,7 +144,7 @@ public class Main extends JFrame {
     private void initTableModel() {
         searchPanel = new JPanel();
         tCondition = new JTextField(10);
-        lCondition = new JLabel("검색");
+        lCondition = new JLabel("Search Title");
         bookJList = new JList();
         bookJList.setBackground(Color.WHITE);
         bookTable = new JTable();
