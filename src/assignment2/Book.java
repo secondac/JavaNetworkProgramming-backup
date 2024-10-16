@@ -4,7 +4,8 @@ import java.io.Serializable;
 
 public class Book implements Serializable {
 
-    transient private Long isbn;
+    // transient private Long isbn;
+    private Long isbn;
     private String title;
     private int edition;
     private String author;
@@ -70,7 +71,7 @@ public class Book implements Serializable {
     }
 
     public String toString(){
-        return "Isbn(transient) = " + getIsbn() +
+        return  "Isbn = " + getIsbn() +
                 ", Title = " + getTitle() +
                 ", Edition = " + getEdition() +
                 ", Author = " + getAuthor() +

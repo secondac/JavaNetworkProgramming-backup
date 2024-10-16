@@ -6,7 +6,7 @@ public class Table extends AbstractTableModel {
     String[] columns = {"ISBN", "Title", "Edition", "Author","Year", "Price" };
     Object[][] data = {{" ", " ", " ", " ", " ", " "}};
 
-    boolean[] columnEditable = {true, true, true, true, true, true};
+    boolean[] columnEditable = {false, false, false, false, false, false};
 
     public Table(Object[][] data) {
         this.data = data;

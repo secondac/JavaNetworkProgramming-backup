@@ -10,17 +10,17 @@ import java.util.ArrayList;
 /**
  * 특정한 목록을 관리(검색, 수정, 추가, 삭제)하는 프로그램
  *
- * -필수 항목
+ * 필수 항목
  *
- * -객체스트림, 파일스트림을 사용하여 목록을 파일에 저장.
- * -사용자 입력으로 객체를 추가하는 기능
- * -객체 개수는 20개 이상
- * -객체의 내용엔 제한이 없지만, 최소한의 현실성 반영 필요
+ * 객체스트림, 파일스트림을 사용하여 목록을 파일에 저장.
+ * 사용자 입력으로 객체를 추가하는 기능
+ * 객체 개수는 20개 이상
+ * 객체의 내용엔 제한이 없지만, 최소한의 현실성 반영 필요
  *
- * -기타 사항
+ * 기타 사항
  *
- * -목록의 자료구조, 관리기능의 구현방식은 자유
- * -단일클래스일 필요없음
+ * 목록의 자료구조, 관리기능의 구현방식은 자유
+ * 단일클래스일 필요없음
  *
  * **/
 public class Main extends JFrame {
@@ -30,12 +30,20 @@ public class Main extends JFrame {
     JLabel lCondition;
     JTextField tCondition;
     JButton searchButton;
-    JComboBox comboBox;
+    // JComboBox comboBox;
     JTable bookTable;
     JButton updateButton, deleteButton, addButton;
     Object[][] emp = new Object[0][5];
 
 
+    /**
+     *
+     *
+     * @sendToFile :  파일로 데이터 보냄
+     * @sendToFile :  ObjectOutputStream 에 FileOutputStream 연결해서 파일로 보냄
+     * @ReceiveFromFile :  파일로부터 데이터 받음
+     * @ReceiveFromFile :  ObjectInputStream 에 FileInputStream 연결해서 데이터 받음
+     * **/
 
     FileInputStream fis = null;
     ObjectInputStream ois = null;
@@ -44,14 +52,18 @@ public class Main extends JFrame {
 
     ArrayList<Book> list = new ArrayList<>();
 
+    // Constructor
     public Main(){
         Book book1 = new Book(9780321714114L, "C++ Primer", 5, "Stanley B. Lippman", 2012, 41.82 );
         Book book2 = new Book(9781449357672L, "Java Network Programming",4, "Elliotte Rusty Harold", 2013, 26.49 );
         Book book3 = new Book(9780321334879L, "Effective C++",3, "Scott Meyers", 2005, 43.73 );
+        Book book4 = new Book(9789390727506L,"database system concepts",7," Henry Korth, Abraham Silberschatz", 2021, 53.63);
 
-        list.add(book1);
-        list.add(book2);
-        list.add(book3);
+        Book[] books = {book1, book2, book3, book4};
+
+        for (Book book : books) {
+            list.add(book);
+        }
 
         sendToFile();
         receiveFromFile();
@@ -64,7 +76,7 @@ public class Main extends JFrame {
         con.add(new JScrollPane(bookTable), BorderLayout.CENTER);
         con.add(bPanel, BorderLayout.SOUTH);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLocation(200,200);
+        setLocation(256,256);
         pack();
         setVisible(true);
 
@@ -94,13 +106,16 @@ public class Main extends JFrame {
             fis = new FileInputStream("books.dat");
             ois = new ObjectInputStream(fis);
 
-            ArrayList list = (ArrayList) ois.readObject();
-            Book b1 = (Book)list.get(0);
-            Book b2 = (Book)list.get(1);
-            Book b3 = (Book)list.get(2);
-            System.out.println("b1.toString() : " + b1.toString());
-            System.out.println("b2.toString() : " + b2.toString());
-            System.out.println("b3.toString() : " + b3.toString());
+            ArrayList<Book> list = (ArrayList<Book>) ois.readObject();
+
+            int i = 0;
+            for (Book b : list) {
+                b = (Book)list.get(i);
+                System.out.println("b"+i+".toString() : " + b.toString());
+                i++;
+            }
+
+
         } catch(Exception ex){
             ex.printStackTrace();
         } finally {
@@ -224,7 +239,6 @@ public class Main extends JFrame {
 
         addButton = new JButton("추가하기");
         addButton.addActionListener(e -> {
-            // 입력 필드 생성
             JTextField isbnField = new JTextField();
             JTextField titleField = new JTextField();
             JTextField authorField = new JTextField();
@@ -317,3 +331,13 @@ public class Main extends JFrame {
         Main main = new Main();
     }
 }
+
+/**
+ *
+ *             Book b1 = (Book)list.get(0);
+ *             Book b2 = (Book)list.get(1);
+ *             Book b3 = (Book)list.get(2);
+ *             System.out.println("b1.toString() : " + b1.toString());
+ *             System.out.println("b2.toString() : " + b2.toString());
+ *             System.out.println("b3.toString() : " + b3.toString());
+ *             **/
