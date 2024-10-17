@@ -11,15 +11,19 @@ public class Book implements Serializable {
     private String author;
     private Double price;
     private int year;
+    private String publisher;
+    private int pages;
 
 
-    public Book(Long isbn, String title, int edition, String author, int year, Double price) {
+    public Book(Long isbn, String title, int edition, String author, int year, Double price, String publisher, int pages) {
         this.isbn = isbn;
         this.title = title;
         this.edition = edition;
         this.author = author;
         this.year = year;
         this.price = price;
+        this.pages = pages;
+        this.publisher = publisher;
     }
 
     public String getAuthor(){
@@ -46,6 +50,15 @@ public class Book implements Serializable {
         return this.price;
     }
 
+    public String getPublisher(){
+        return this.publisher;
+    }
+
+    public int getPages(){
+        return this.pages;
+    }
+
+
 
     public void setAuthor(String author){
         this.author = author;
@@ -70,13 +83,24 @@ public class Book implements Serializable {
         this.price = price;
     }
 
+
+    public void setPublisher(String publisher){
+        this.publisher = publisher;
+    }
+
+    public void setPages(int pages){
+        this.pages = pages;
+    }
+
     public String toString(){
         return  "Isbn = " + getIsbn() +
                 ", Title = " + getTitle() +
                 ", Edition = " + getEdition() +
                 ", Author = " + getAuthor() +
                 ", Year = " + getYear() +
-                ", Price = " + getPrice();
+                ", Price = " + getPrice() +
+                ", Pages = " + getPages() +
+                ", Publisher = " + getPublisher();
     }
 
 }

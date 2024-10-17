@@ -3,10 +3,10 @@ package assignment2;
 import javax.swing.table.AbstractTableModel;
 
 public class Table extends AbstractTableModel {
-    String[] columns = {"ISBN", "Title", "Edition", "Author","Year", "Price" };
-    Object[][] data = {{" ", " ", " ", " ", " ", " "}};
+    String[] columns = {"ISBN", "Title", "Edition", "Author","Year", "Price", "Publisher", "Pages" };
+    Object[][] data = {{" ", " ", " ", " ", " ", " ", " ", " "}};
 
-    boolean[] columnEditable = {false, false, false, false, false, false};
+    boolean[] columnEditable = {false, false, false, false, false, false, false, false};
 
     public Table(Object[][] data) {
         this.data = data;

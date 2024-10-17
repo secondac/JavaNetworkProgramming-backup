@@ -55,26 +55,26 @@ public class Main extends JFrame {
 
     // Constructor
     public Main(){
-        Book book1 = new Book(9780321714114L, "C++ Primer", 5, "Stanley B. Lippman", 2012, 41.82 );
-        Book book2 = new Book(9781449357672L, "Java Network Programming",4, "Elliotte Rusty Harold", 2013, 26.49 );
-        Book book3 = new Book(9780321334879L, "Effective C++",3, "Scott Meyers", 2005, 43.73 );
-        Book book4 = new Book(9789390727506L,"Database system concepts",7," Henry Korth, Abraham Silberschatz", 2021, 53.63);
-        Book book5 = new Book(9780672337475L, "OpenGL Superbible", 7, "Graham Sellers, Richard Wright Jr., Nicholas Haemel",2015, 43.49);
-        Book book6 = new Book(9781617294945L, "Spring in Action", 6, "Craig Walls", 2018, 44.99 );
-        Book book7 = new Book(9781617291470L, "Netty in Action", 1, "Norman Maurer, Marvin Allen Wolfthal", 2016, 37.99 );
-        Book book8 = new Book(9780134997834L, "A Tour of C++", 3, "Bjarne Stroustrup", 2018, 35.99 );
-        Book book9 = new Book(9780534950972L, "Introduction to the Theory of Computation", 3, "Michael Sipser", 2012, 90.00);
-        Book book10 = new Book(9781617298254L, "Troubleshooting Java", 1, "Lauren Malhoit, Andy Syrewicze", 2023, 42.99);
-        Book book11 = new Book(9780262033848L, "Introduction to Algorithms", 3, "Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein", 2009, 99.95);
-        Book book12 = new Book(9781119695400L, "Professional C++", 5, "Marc Gregoire", 2021, 60.00);
-        Book book13 = new Book(9781839214110L, "Node.js Design Patterns", 3, "Mario Casciaro", 2020, 35.49);
-        Book book14 = new Book(9789081540636L, "Distributed Systems", 1, "Maarten van Steen", 2023, 24.64);
-        Book book15 = new Book(9781942270065L, "Introduction to 3D Game Programming with DirectX 12", 1, "Frank D. Luna", 2016, 59.95);
-        Book book16 = new Book(9780321928429L, "C Primer Plus", 6, "Stephen Prata", 2013, 55.59);
-        Book book17 = new Book(9780136502142L, "Modern JavaScript for the Impatient", 1, "Cay Horstmann", 2020, 41.85);
-        Book book18 = new Book(9781492041139L, "Data Science from Scratch: First Principles with Python", 2, "Joel Grus", 2019, 41.54);
-        Book book19 = new Book(9780128119051L, "Computer Architecture: A Quantitative Approach", 6, "John L. Hennessy", 2017, 111.36);
-        Book book20 = new Book(9781119800361L, "Operating System Concepts", 10, "Abraham Silberschatz, Peter B. Galvin, Greg Gagne", 2021, 59.87);
+        Book book1 = new Book(9780321714114L, "C++ Primer", 5, "Stanley B. Lippman", 2012, 41.82, "Addison-Wesley Professional", 976);
+        Book book2 = new Book(9781449357672L, "Java Network Programming",4, "Elliotte Rusty Harold", 2013, 26.49, "O'Reilly Media", 504);
+        Book book3 = new Book(9780321334879L, "Effective C++",3, "Scott Meyers", 2005, 43.73,"Addison-Wesley Professional", 320);
+        Book book4 = new Book(9780078022159L,"Database system concepts",7,"Abraham Silberschatz", 2019, 53.63, "McGraw-Hill Higher Education", 1373 );
+        Book book5 = new Book(9780672337475L, "OpenGL Superbible", 7, "Graham Sellers, Richard Wright Jr., Nicholas Haemel",2015, 43.49, "Addison-Wesley Professional", 880);
+        Book book6 = new Book(9781617294945L, "Spring in Action", 6, "Craig Walls", 2018, 44.99, "Manning Publications", 520);
+        Book book7 = new Book(9781617291470L, "Netty in Action", 1, "Norman Maurer, Marvin Allen Wolfthal", 2016, 37.99, "Manning Publications", 296);
+        Book book8 = new Book(9780134997834L, "A Tour of C++", 3, "Bjarne Stroustrup", 2018, 35.99, "Addison-Wesley Professional", 256);
+        Book book9 = new Book(9781133187790L, "Introduction to the Theory of Computation", 3, "Michael Sipser", 2012, 122.21, "Cengage Learning", 504);
+        Book book10 = new Book(9781617299773L, "Troubleshooting Java", 1, "Lauren Malhoit, Andy Syrewicze", 2023, 42.99, "Manning Publications", 328);
+        Book book11 = new Book(9780262033848L, "Introduction to Algorithms", 3, "Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein", 2009, 102.00, "MIT Press", 1292);
+        Book book12 = new Book(9781119695400L, "Professional C++", 5, "Marc Gregoire", 2021, 60.00, "Wrox Pr Inc", 1256);
+        Book book13 = new Book(9781839214110L, "Node.js Design Patterns", 3, "Mario Casciaro", 2020, 35.49, "Packt Publishing", 664);
+        Book book14 = new Book(9780132392273L, "Distributed Systems: Principles and Paradigms", 2, "Andrew S. Tanenbaum, Maarten van Steen", 2006, 22.98, "Prentice Hall", 704);
+        Book book15 = new Book(9781942270065L, "Introduction to 3D Game Programming with DirectX 12", 1, "Frank D. Luna", 2016, 59.95, "Mercury Learning & Information", 900);
+        Book book16 = new Book(9780321928429L, "C Primer Plus", 6, "Stephen Prata", 2013, 55.59, "Addison-Wesley Professional", 1080);
+        Book book17 = new Book(9780136502142L, "Modern JavaScript for the Impatient", 1, "Cay Horstmann", 2020, 41.85, "Addison-Wesley Professional", 288);
+        Book book18 = new Book(9781492041139L, "Data Science from Scratch: First Principles with Python", 2, "Joel Grus", 2019, 41.54, "O'Reilly Media", 403);
+        Book book19 = new Book(9780128119051L, "Computer Architecture: A Quantitative Approach", 6, "John L. Hennessy", 2017, 111.36, "Morgan Kaufmann", 936);
+        Book book20 = new Book(9781119320913L, "Operating System Concepts", 10, "Abraham Silberschatz, Peter B. Galvin, Greg Gagne", 2018, 59.87, "Wiley", 1040);
 
 
         Book[] books = {book1, book2, book3, book4, book5, book6, book7, book8, book9, book10, book11, book12, book13, book14, book15, book16, book17, book18, book19, book20};
@@ -158,9 +158,9 @@ public class Main extends JFrame {
         bookJList.setBackground(Color.WHITE);
         bookTable = new JTable();
 
-        // 테이블에 표시할 데이터를 ArrayList에서 가져옴
-        String[] columnNames = { "ISBN", "Title", "Edition", "Author", "Year", "Price" };
-        Object[][] data = new Object[list.size()][6];  // Book 데이터 크기만큼 배열을 만듦
+        //
+        String[] columnNames = { "ISBN", "Title", "Edition", "Author", "Year", "Price", "Publisher", "Pages" };
+        Object[][] data = new Object[list.size()][8];  // Book 데이터 크기만큼 배열을 만듦
 
         for (int i = 0; i < list.size(); i++) {
             Book book = list.get(i);
@@ -170,9 +170,11 @@ public class Main extends JFrame {
             data[i][3] = book.getAuthor(); // Author
             data[i][4] = book.getYear();   // Year
             data[i][5] = book.getPrice();  // Price
+            data[i][6] = book.getPublisher(); // Publisher
+            data[i][7] = book.getPages(); // Pages
         }
 
-        // 테이블에 데이터를 표시하기 위해 DefaultTableModel 사용
+        // bookTable은 JTable 객체;
         DefaultTableModel tableModel = new DefaultTableModel(data, columnNames);
         bookTable.setModel(tableModel);  // JTable에 모델 설정
 
@@ -193,7 +195,7 @@ public class Main extends JFrame {
             updateTableData(filteredList);
         });
 
-        // JPanel에 추가하거나 JFrame에 추가
+        //
         searchPanel.add(lCondition);
         searchPanel.add(tCondition);
         searchPanel.add(searchButton);
@@ -213,9 +215,11 @@ public class Main extends JFrame {
                 JTextField editionField = new JTextField(Integer.toString(selectedBook.getEdition()));
                 JTextField yearField = new JTextField(Integer.toString(selectedBook.getYear()));
                 JTextField priceField = new JTextField(Double.toString(selectedBook.getPrice()));
+                JTextField publisherField = new JTextField(selectedBook.getPublisher());
+                JTextField pagesField = new JTextField(Integer.toString(selectedBook.getPages()));
 
                 // 입력 패널 생성
-                JPanel panel = createBookInputPanel(isbnField, titleField, authorField, editionField, yearField, priceField);
+                JPanel panel = createBookInputPanel(isbnField, titleField, authorField, editionField, yearField, priceField, publisherField, pagesField);
 
                 // 다이얼로그 표시
                 int result = JOptionPane.showConfirmDialog(null, panel, "책 정보 수정", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
@@ -230,6 +234,8 @@ public class Main extends JFrame {
                         selectedBook.setEdition(Integer.parseInt(editionField.getText()));
                         selectedBook.setYear(Integer.parseInt(yearField.getText()));
                         selectedBook.setPrice(Double.parseDouble(priceField.getText()));
+                        selectedBook.setPublisher(publisherField.getText());
+                        selectedBook.setPages(Integer.parseInt(pagesField.getText()));
 
                         // 수정된 데이터를 테이블과 파일에 반영
                         updateTableData(list);
@@ -264,9 +270,11 @@ public class Main extends JFrame {
             JTextField editionField = new JTextField();
             JTextField yearField = new JTextField();
             JTextField priceField = new JTextField();
+            JTextField publisherField = new JTextField();
+            JTextField pagesField = new JTextField();
 
             // 입력 패널 생성
-            JPanel panel = createBookInputPanel(isbnField, titleField, authorField, editionField, yearField, priceField);
+            JPanel panel = createBookInputPanel(isbnField, titleField, authorField, editionField, yearField, priceField, publisherField, pagesField);
 
             // 다이얼로그 표시
             int result = JOptionPane.showConfirmDialog(null, panel, "새 책 추가", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
@@ -288,7 +296,9 @@ public class Main extends JFrame {
                             Integer.parseInt(editionField.getText()),
                             authorField.getText(),
                             Integer.parseInt(yearField.getText()),
-                            Double.parseDouble(priceField.getText())
+                            Double.parseDouble(priceField.getText()),
+                            publisherField.getText(),
+                            Integer.parseInt(pagesField.getText())
                     );
 
                     // 리스트에 추가 및 테이블 갱신
@@ -307,7 +317,7 @@ public class Main extends JFrame {
 
 
     private JPanel createBookInputPanel(JTextField isbnField, JTextField titleField, JTextField authorField,
-                                        JTextField editionField, JTextField yearField, JTextField priceField) {
+                                        JTextField editionField, JTextField yearField, JTextField priceField, JTextField publisherField, JTextField pagesField) {
         JPanel panel = new JPanel(new GridLayout(0, 2, 5, 5));
 
         panel.add(new JLabel("ISBN:"));
@@ -323,13 +333,18 @@ public class Main extends JFrame {
         panel.add(new JLabel("Price:"));
         panel.add(priceField);
 
+        panel.add(new JLabel("Publisher:"));
+        panel.add(publisherField);
+        panel.add(new JLabel("Pages:"));
+        panel.add(pagesField);
+
         return panel;
     }
 
 
     private void updateTableData(ArrayList<Book> bookList) {
-        String[] columnNames = { "ISBN", "Title", "Edition", "Author", "Year", "Price" };
-        Object[][] data = new Object[bookList.size()][6];  // Book 데이터 크기만큼 배열을 만듦
+        String[] columnNames = { "ISBN", "Title", "Edition", "Author", "Year", "Price", "Publisher", "Pages"};
+        Object[][] data = new Object[bookList.size()][8];  // Book 데이터 크기만큼 배열을 만듦
 
         for (int i = 0; i < bookList.size(); i++) {
             Book book = bookList.get(i);
@@ -339,6 +354,8 @@ public class Main extends JFrame {
             data[i][3] = book.getAuthor(); // Author
             data[i][4] = book.getYear();   // Year
             data[i][5] = book.getPrice();  // Price
+            data[i][6] = book.getPublisher();
+            data[i][7] = book.getPages();
         }
 
         // 테이블에 데이터를 표시하기 위해 DefaultTableModel 사용
