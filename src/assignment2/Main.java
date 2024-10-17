@@ -30,7 +30,7 @@ public class Main extends JFrame {
     JList bookJList;
     JLabel lCondition;
     JTextField tCondition;
-    JButton searchButton;
+    JButton searchButton, resetButton;
     // JComboBox comboBox;
     JTable bookTable;
     JButton updateButton, deleteButton, addButton;
@@ -213,12 +213,23 @@ public class Main extends JFrame {
         searchPanel.add(lCondition);
         searchPanel.add(tCondition);
         searchPanel.add(searchButton);
+
         bPanel = new JPanel();
 
-
+        resetButton = new JButton("초기화");
+        resetButton.addActionListener(e -> {
+            tCondition.setText(""); // 검색 필드 초기화
+            updateTableData(list);  // 원래 리스트 데이터를 다시 로드
+            isSearching = false;    // 검색 상태를 초기화
+        });
+        searchPanel.add(resetButton);
 
         updateButton = new JButton("수정하기");
         updateButton.addActionListener(e -> {
+            if (isSearching) {
+                JOptionPane.showMessageDialog(this, "검색 중에는 수정할 수 없습니다.\n 초기화버튼을 눌러주세요", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
             int selectedRow = bookTable.getSelectedRow();
             if (selectedRow != -1) {
                 Book selectedBook = list.get(selectedRow);
@@ -264,6 +275,10 @@ public class Main extends JFrame {
 
         deleteButton = new JButton("삭제하기");
         deleteButton.addActionListener(e -> {
+            if (isSearching) {
+                JOptionPane.showMessageDialog(this, "검색 중에는 삭제할 수 없습니다.\n 초기화버튼을 눌러주세요", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
             int selectedRow = bookTable.getSelectedRow();
             if (selectedRow != -1) {
                 list.remove(selectedRow);
@@ -276,6 +291,10 @@ public class Main extends JFrame {
 
         addButton = new JButton("추가하기");
         addButton.addActionListener(e -> {
+            if (isSearching) {
+                JOptionPane.showMessageDialog(this, "검색 중에는 추가할 수 없습니다.\n 초기화버튼을 눌러주세요", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
             JTextField isbnField = new JTextField();
             JTextField titleField = new JTextField();
             JTextField authorField = new JTextField();
@@ -368,6 +387,18 @@ public class Main extends JFrame {
         // 테이블에 데이터 표시
         DefaultTableModel tableModel = new DefaultTableModel(data, columnNames);
         bookTable.setModel(tableModel);
+
+        TableColumnModel columnModel = bookTable.getColumnModel();
+        columnModel.getColumn(0).setPreferredWidth(140);  // ISBN
+        columnModel.getColumn(1).setPreferredWidth(300);  // Title
+        columnModel.getColumn(2).setPreferredWidth(60);   // Edition
+        columnModel.getColumn(3).setPreferredWidth(200);  // Author
+        columnModel.getColumn(4).setPreferredWidth(50);   // Year
+        columnModel.getColumn(5).setPreferredWidth(100);  // Price
+        columnModel.getColumn(6).setPreferredWidth(150);  // Publisher
+        columnModel.getColumn(7).setPreferredWidth(50);   // Pages
+
+
     }
 
     // Constructor로 main 실행
