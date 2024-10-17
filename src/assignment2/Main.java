@@ -3,6 +3,7 @@ package assignment2;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumnModel;
 import java.awt.*;
 import java.io.*;
 import java.util.ArrayList;
@@ -104,6 +105,7 @@ public class Main extends JFrame {
 
     public void sendToFile(){
         try{
+            System.out.println("sendToFile() 확인");
             fos = new FileOutputStream("books.dat");
             oos = new ObjectOutputStream(fos);
             oos.writeObject(list);
@@ -127,6 +129,7 @@ public class Main extends JFrame {
 
             ArrayList<Book> list = (ArrayList<Book>) ois.readObject();
 
+            System.out.println("receiveFromFile() 확인");
             int i = 0;
             for (Book b : list) {
                 b = (Book)list.get(i);
@@ -160,31 +163,39 @@ public class Main extends JFrame {
 
         //
         String[] columnNames = { "ISBN", "Title", "Edition", "Author", "Year", "Price", "Publisher", "Pages" };
-        Object[][] data = new Object[list.size()][8];  // Book 데이터 크기만큼 배열을 만듦
+        Object[][] data = new Object[list.size()][8];
 
         for (int i = 0; i < list.size(); i++) {
             Book book = list.get(i);
-            data[i][0] = book.getIsbn();   // ISBN
-            data[i][1] = book.getTitle();  // Title
-            data[i][2] = book.getEdition(); // Edition
-            data[i][3] = book.getAuthor(); // Author
-            data[i][4] = book.getYear();   // Year
-            data[i][5] = book.getPrice();  // Price
-            data[i][6] = book.getPublisher(); // Publisher
-            data[i][7] = book.getPages(); // Pages
+            data[i][0] = book.getIsbn();
+            data[i][1] = book.getTitle();
+            data[i][2] = book.getEdition();
+            data[i][3] = book.getAuthor();
+            data[i][4] = book.getYear();
+            data[i][5] = book.getPrice();
+            data[i][6] = book.getPublisher();
+            data[i][7] = book.getPages();
         }
 
         // bookTable은 JTable 객체;
         DefaultTableModel tableModel = new DefaultTableModel(data, columnNames);
-        bookTable.setModel(tableModel);  // JTable에 모델 설정
+        bookTable.setModel(tableModel);  // tableModel 연동
 
-        // 검색 버튼 설정
+        TableColumnModel columnModel = bookTable.getColumnModel();
+        columnModel.getColumn(0).setPreferredWidth(140);  // ISBN
+        columnModel.getColumn(1).setPreferredWidth(300);  // Title
+        columnModel.getColumn(2).setPreferredWidth(60);   // Edition
+        columnModel.getColumn(3).setPreferredWidth(200);  // Author
+        columnModel.getColumn(4).setPreferredWidth(50);   // Year
+        columnModel.getColumn(5).setPreferredWidth(100);  // Price
+        columnModel.getColumn(6).setPreferredWidth(150);  // Publisher
+        columnModel.getColumn(7).setPreferredWidth(50);   // Pages
+
         searchButton = new JButton("조회");
         searchButton.addActionListener(e -> {
             String searchText = tCondition.getText().toLowerCase();
             ArrayList<Book> filteredList = new ArrayList<>();
 
-            // 검색 조건에 맞는 책만 필터링
             for (Book book : list) {
                 if (book.getTitle().toLowerCase().contains(searchText) ||
                         book.getAuthor().toLowerCase().contains(searchText)) {
@@ -203,12 +214,10 @@ public class Main extends JFrame {
 
         updateButton = new JButton("수정하기");
         updateButton.addActionListener(e -> {
-            int selectedRow = bookTable.getSelectedRow();  // 선택된 행의 인덱스 가져오기
+            int selectedRow = bookTable.getSelectedRow();
             if (selectedRow != -1) {
-                // 선택된 행의 Book 객체 가져오기
                 Book selectedBook = list.get(selectedRow);
 
-                // 입력 필드에 기존 데이터 채워 넣기
                 JTextField isbnField = new JTextField(Long.toString(selectedBook.getIsbn()));  // 수정할 경우에는 ISBN도 포함
                 JTextField titleField = new JTextField(selectedBook.getTitle());
                 JTextField authorField = new JTextField(selectedBook.getAuthor());
@@ -221,14 +230,13 @@ public class Main extends JFrame {
                 // 입력 패널 생성
                 JPanel panel = createBookInputPanel(isbnField, titleField, authorField, editionField, yearField, priceField, publisherField, pagesField);
 
-                // 다이얼로그 표시
                 int result = JOptionPane.showConfirmDialog(null, panel, "책 정보 수정", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
 
-                // 확인 버튼이 눌렸을 때 수정 처리
+                // 확인
                 if (result == JOptionPane.OK_OPTION) {
                     try {
                         // 필드 값 업데이트
-                        selectedBook.setIsbn(Long.parseLong(isbnField.getText()));  // ISBN도 수정 가능하게
+                        selectedBook.setIsbn(Long.parseLong(isbnField.getText()));
                         selectedBook.setTitle(titleField.getText());
                         selectedBook.setAuthor(authorField.getText());
                         selectedBook.setEdition(Integer.parseInt(editionField.getText()));
@@ -251,12 +259,11 @@ public class Main extends JFrame {
 
         deleteButton = new JButton("삭제하기");
         deleteButton.addActionListener(e -> {
-            int selectedRow = bookTable.getSelectedRow();  // 선택된 행의 인덱스 가져오기
+            int selectedRow = bookTable.getSelectedRow();
             if (selectedRow != -1) {
-                // 선택된 행에 해당하는 Book 객체를 리스트에서 삭제
                 list.remove(selectedRow);
-                updateTableData(list);  // 테이블 데이터 갱신
-                sendToFile();  // 파일로 저장하여 데이터 갱신
+                updateTableData(list);
+                sendToFile();
             } else {
                 JOptionPane.showMessageDialog(this, "삭제할 항목을 선택하세요.");
             }
@@ -277,7 +284,7 @@ public class Main extends JFrame {
             JPanel panel = createBookInputPanel(isbnField, titleField, authorField, editionField, yearField, priceField, publisherField, pagesField);
 
             // 다이얼로그 표시
-            int result = JOptionPane.showConfirmDialog(null, panel, "새 책 추가", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+            int result = JOptionPane.showConfirmDialog(null, panel, "Insert new book", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
 
             // 확인 버튼이 눌렸을 때 처리
             if (result == JOptionPane.OK_OPTION) {
@@ -285,11 +292,10 @@ public class Main extends JFrame {
                     // 입력 값이 비어있지 않은지 확인
                     if (isbnField.getText().isEmpty() || titleField.getText().isEmpty() || authorField.getText().isEmpty() ||
                             editionField.getText().isEmpty() || yearField.getText().isEmpty() || priceField.getText().isEmpty()) {
-                        JOptionPane.showMessageDialog(this, "모든 필드를 입력하세요.", "오류", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(this, "필드 값은 Null이 될 수 없습니다", "Error", JOptionPane.ERROR_MESSAGE);
                         return;
                     }
 
-                    // 새로운 Book 객체 생성
                     Book newBook = new Book(
                             Long.parseLong(isbnField.getText()),
                             titleField.getText(),
@@ -301,10 +307,9 @@ public class Main extends JFrame {
                             Integer.parseInt(pagesField.getText())
                     );
 
-                    // 리스트에 추가 및 테이블 갱신
                     list.add(newBook);
                     updateTableData(list);
-                    sendToFile();  // 파일로 저장
+                    sendToFile();  // Send to File by FileInputStream
                 } catch (NumberFormatException ex) {
                     JOptionPane.showMessageDialog(this, "입력 형식이 잘못되었습니다.", "오류", JOptionPane.ERROR_MESSAGE);
                 }
@@ -344,25 +349,26 @@ public class Main extends JFrame {
 
     private void updateTableData(ArrayList<Book> bookList) {
         String[] columnNames = { "ISBN", "Title", "Edition", "Author", "Year", "Price", "Publisher", "Pages"};
-        Object[][] data = new Object[bookList.size()][8];  // Book 데이터 크기만큼 배열을 만듦
+        Object[][] data = new Object[bookList.size()][8];  // columnName 인덱스 8개
 
         for (int i = 0; i < bookList.size(); i++) {
             Book book = bookList.get(i);
-            data[i][0] = book.getIsbn();   // ISBN
-            data[i][1] = book.getTitle();  // Title
-            data[i][2] = book.getEdition(); // Edition
-            data[i][3] = book.getAuthor(); // Author
-            data[i][4] = book.getYear();   // Year
-            data[i][5] = book.getPrice();  // Price
+            data[i][0] = book.getIsbn();
+            data[i][1] = book.getTitle();
+            data[i][2] = book.getEdition();
+            data[i][3] = book.getAuthor();
+            data[i][4] = book.getYear();
+            data[i][5] = book.getPrice();
             data[i][6] = book.getPublisher();
             data[i][7] = book.getPages();
         }
 
-        // 테이블에 데이터를 표시하기 위해 DefaultTableModel 사용
+        // 테이블에 데이터 표시
         DefaultTableModel tableModel = new DefaultTableModel(data, columnNames);
-        bookTable.setModel(tableModel);  // JTable에 모델 설정
+        bookTable.setModel(tableModel);
     }
 
+    // Constructor로 main 실행
     public static void main(String[] args) {
         Main main = new Main();
     }
