@@ -28,13 +28,13 @@ public class Main extends JFrame {
     JPanel searchPanel;
     JPanel bPanel;
     JList bookJList;
-    JLabel lCondition;
+    JLabel lCondition, searchCondition;
     JTextField tCondition;
     JButton searchButton, resetButton;
     // JComboBox comboBox;
     JTable bookTable;
     JButton updateButton, deleteButton, addButton;
-    Object[][] emp = new Object[0][5];
+    Object[][] emp = new Object[0][8];
     boolean isSearching = false;
 
 
@@ -157,8 +157,10 @@ public class Main extends JFrame {
 
     private void initTableModel() {
         searchPanel = new JPanel();
-        tCondition = new JTextField(10);
+        tCondition = new JTextField(20);
         lCondition = new JLabel("Search Title");
+        searchCondition = new JLabel("현재 상태: 초기화");
+        searchCondition.setForeground(Color.RED);
         bookJList = new JList();
         bookJList.setBackground(Color.WHITE);
         bookTable = new JTable();
@@ -207,6 +209,7 @@ public class Main extends JFrame {
 
             updateTableData(filteredList);
             isSearching = true;
+            searchCondition.setText("현재 상테: Searching");
         });
 
         //
@@ -214,15 +217,19 @@ public class Main extends JFrame {
         searchPanel.add(tCondition);
         searchPanel.add(searchButton);
 
+
         bPanel = new JPanel();
 
         resetButton = new JButton("초기화");
         resetButton.addActionListener(e -> {
-            tCondition.setText(""); // 검색 필드 초기화
-            updateTableData(list);  // 원래 리스트 데이터를 다시 로드
-            isSearching = false;    // 검색 상태를 초기화
+            tCondition.setText("");
+            updateTableData(list);
+            isSearching = false;
+            searchCondition.setText("현재 상태: 초기화");
         });
         searchPanel.add(resetButton);
+        searchPanel.add(searchCondition);
+
 
         updateButton = new JButton("수정하기");
         updateButton.addActionListener(e -> {
@@ -243,15 +250,12 @@ public class Main extends JFrame {
                 JTextField publisherField = new JTextField(selectedBook.getPublisher());
                 JTextField pagesField = new JTextField(Integer.toString(selectedBook.getPages()));
 
-                // 입력 패널 생성
                 JPanel panel = createBookInputPanel(isbnField, titleField, authorField, editionField, yearField, priceField, publisherField, pagesField);
 
                 int result = JOptionPane.showConfirmDialog(null, panel, "책 정보 수정", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
 
-                // 확인
                 if (result == JOptionPane.OK_OPTION) {
                     try {
-                        // 필드 값 업데이트
                         selectedBook.setIsbn(Long.parseLong(isbnField.getText()));
                         selectedBook.setTitle(titleField.getText());
                         selectedBook.setAuthor(authorField.getText());
@@ -261,11 +265,10 @@ public class Main extends JFrame {
                         selectedBook.setPublisher(publisherField.getText());
                         selectedBook.setPages(Integer.parseInt(pagesField.getText()));
 
-                        // 수정된 데이터를 테이블과 파일에 반영
                         updateTableData(list);
-                        sendToFile();  // 수정된 내용을 파일에 저장
+                        sendToFile();  //
                     } catch (NumberFormatException ex) {
-                        JOptionPane.showMessageDialog(this, "입력 형식이 잘못되었습니다.", "오류", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(this, "입력 형식이 잘못되었습니다.\n또는 입력값은 null이 될 수 없습니다.", "오류", JOptionPane.ERROR_MESSAGE);
                     }
                 }
             } else {
@@ -308,7 +311,6 @@ public class Main extends JFrame {
 
             int result = JOptionPane.showConfirmDialog(null, panel, "Insert new book", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
 
-            // 확인 버튼 누를때
             if (result == JOptionPane.OK_OPTION) {
                 try {
                     if (isbnField.getText().isEmpty() || titleField.getText().isEmpty() || authorField.getText().isEmpty() ||
