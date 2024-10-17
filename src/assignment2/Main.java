@@ -66,9 +66,18 @@ public class Main extends JFrame {
         Book book9 = new Book(9780534950972L, "Introduction to the Theory of Computation", 3, "Michael Sipser", 2012, 90.00);
         Book book10 = new Book(9781617298254L, "Troubleshooting Java", 1, "Lauren Malhoit, Andy Syrewicze", 2023, 42.99);
         Book book11 = new Book(9780262033848L, "Introduction to Algorithms", 3, "Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein", 2009, 99.95);
-        Book book12 = new Book(9781119695401L, "Professional C++", 5, "Marc Gregoire", 2021, 60.00);
+        Book book12 = new Book(9781119695400L, "Professional C++", 5, "Marc Gregoire", 2021, 60.00);
+        Book book13 = new Book(9781839214110L, "Node.js Design Patterns", 3, "Mario Casciaro", 2020, 35.49);
+        Book book14 = new Book(9789081540636L, "Distributed Systems", 1, "Maarten van Steen", 2023, 24.64);
+        Book book15 = new Book(9781942270065L, "Introduction to 3D Game Programming with DirectX 12", 1, "Frank D. Luna", 2016, 59.95);
+        Book book16 = new Book(9780321928429L, "C Primer Plus", 6, "Stephen Prata", 2013, 55.59);
+        Book book17 = new Book(9780136502142L, "Modern JavaScript for the Impatient", 1, "Cay Horstmann", 2020, 41.85);
+        Book book18 = new Book(9781492041139L, "Data Science from Scratch: First Principles with Python", 2, "Joel Grus", 2019, 41.54);
+        Book book19 = new Book(9780128119051L, "Computer Architecture: A Quantitative Approach", 6, "John L. Hennessy", 2017, 111.36);
+        Book book20 = new Book(9781119800361L, "Operating System Concepts", 10, "Abraham Silberschatz, Peter B. Galvin, Greg Gagne", 2021, 59.87);
 
-        Book[] books = {book1, book2, book3, book4, book5, book6, book7, book8, book9, book10, book11, book12};
+
+        Book[] books = {book1, book2, book3, book4, book5, book6, book7, book8, book9, book10, book11, book12, book13, book14, book15, book16, book17, book18, book19, book20};
 
         for (Book book : books) {
             list.add(book);
