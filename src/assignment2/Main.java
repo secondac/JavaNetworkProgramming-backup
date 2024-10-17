@@ -35,6 +35,7 @@ public class Main extends JFrame {
     JTable bookTable;
     JButton updateButton, deleteButton, addButton;
     Object[][] emp = new Object[0][5];
+    boolean isSearching = false;
 
 
     /**
@@ -99,6 +100,7 @@ public class Main extends JFrame {
         pack();
         setSize(768,512);
         setVisible(true);
+        isSearching = false;
 
     }
 
@@ -204,6 +206,7 @@ public class Main extends JFrame {
             }
 
             updateTableData(filteredList);
+            isSearching = true;
         });
 
         //
@@ -212,13 +215,15 @@ public class Main extends JFrame {
         searchPanel.add(searchButton);
         bPanel = new JPanel();
 
+
+
         updateButton = new JButton("수정하기");
         updateButton.addActionListener(e -> {
             int selectedRow = bookTable.getSelectedRow();
             if (selectedRow != -1) {
                 Book selectedBook = list.get(selectedRow);
 
-                JTextField isbnField = new JTextField(Long.toString(selectedBook.getIsbn()));  // 수정할 경우에는 ISBN도 포함
+                JTextField isbnField = new JTextField(Long.toString(selectedBook.getIsbn()));
                 JTextField titleField = new JTextField(selectedBook.getTitle());
                 JTextField authorField = new JTextField(selectedBook.getAuthor());
                 JTextField editionField = new JTextField(Integer.toString(selectedBook.getEdition()));
@@ -280,16 +285,13 @@ public class Main extends JFrame {
             JTextField publisherField = new JTextField();
             JTextField pagesField = new JTextField();
 
-            // 입력 패널 생성
             JPanel panel = createBookInputPanel(isbnField, titleField, authorField, editionField, yearField, priceField, publisherField, pagesField);
 
-            // 다이얼로그 표시
             int result = JOptionPane.showConfirmDialog(null, panel, "Insert new book", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
 
-            // 확인 버튼이 눌렸을 때 처리
+            // 확인 버튼 누를때
             if (result == JOptionPane.OK_OPTION) {
                 try {
-                    // 입력 값이 비어있지 않은지 확인
                     if (isbnField.getText().isEmpty() || titleField.getText().isEmpty() || authorField.getText().isEmpty() ||
                             editionField.getText().isEmpty() || yearField.getText().isEmpty() || priceField.getText().isEmpty()) {
                         JOptionPane.showMessageDialog(this, "필드 값은 Null이 될 수 없습니다", "Error", JOptionPane.ERROR_MESSAGE);
