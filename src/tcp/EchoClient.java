@@ -6,7 +6,7 @@ import java.net.Socket;
 public class EchoClient {
     public static void main(String[] args) {
         try{
-            Socket socket = new Socket("127.0.0.1", 10001);
+            Socket socket = new Socket("119.213.238.20", 10001); // 127.0.0.1
             OutputStream os = socket.getOutputStream();
             InputStream is = socket.getInputStream();
             PrintWriter pw = new PrintWriter(new OutputStreamWriter(os));
@@ -27,7 +27,7 @@ public class EchoClient {
             socket.close();
 
         } catch (Exception e){
-
+            e.printStackTrace();
         }
     }
 }
