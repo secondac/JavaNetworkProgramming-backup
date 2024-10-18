@@ -6,6 +6,10 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.util.ArrayList;
 
+/**
+ * @UpdateConfirmTest : 업데이트 사항이 books.dat 에 반영되었는지 확인하는 클래스
+ *
+ * **/
 public class UpdateConfirmTest {
     public static void main(String[] args) {
         FileInputStream fis = null;
