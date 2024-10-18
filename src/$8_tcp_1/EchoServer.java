@@ -1,4 +1,4 @@
-package tcp;
+package $8_tcp_1;
 
 import java.io.*;
 import java.net.InetAddress;

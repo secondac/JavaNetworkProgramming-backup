@@ -1,4 +1,4 @@
-package tcp;
+package $8_tcp_1;
 
 import java.io.*;
 import java.net.Socket;
@@ -6,7 +6,7 @@ import java.net.Socket;
 public class EchoClient {
     public static void main(String[] args) {
         try{
-            Socket socket = new Socket("119.213.238.20", 10001); // 127.0.0.1
+            Socket socket = new Socket("127.0.0.1", 10001); // 127.0.0.1  119.213.238.20 192.168.0.106
             OutputStream os = socket.getOutputStream();
             InputStream is = socket.getInputStream();
             PrintWriter pw = new PrintWriter(new OutputStreamWriter(os));
