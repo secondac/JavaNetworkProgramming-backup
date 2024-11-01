@@ -1,4 +1,4 @@
-package $8_tcp_1;
+package $08_tcp_1;
 
 import java.io.*;
 import java.net.Socket;
