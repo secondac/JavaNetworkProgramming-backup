@@ -9,6 +9,8 @@
     </option>
     <option name="packages">
       <set>
+        <option value="$02_thread.velog" />
+        <option value="$03_io.polymorphism" />
         <option value="assignment1.as1" />
         <option value="assignment1.as2" />
         <option value="io.polymorphism" />
