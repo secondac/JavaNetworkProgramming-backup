@@ -12,12 +12,15 @@ public class BufferTime {
 
         String filePath =  "8.pptx";
         // String filePath = "8.pptx";
-        System.out.println(filePath);
 
 
         // String filePath = getClass().getResource("/8.pdf").getPath();
         // String filePath = "C:\\Users\\rhdeh\\OneDrive\\바탕 화면\\java\\JavaNetworkProgramming\\src\\$10_nio\\8.pptx";
         // String filePath = "./src/$10_nio/8.pdf";
+
+
+        System.out.println(filePath);
+
         File originalFile = new File(filePath);
 
         new CopyNonBuf(originalFile, "COPY_n_" + filePath);
